@@ -11,7 +11,7 @@ console.log("Portfolio hero section initialized successfully!");
 document.getElementById('portfolioContactForm').addEventListener('submit', function(event) {
     event.preventDefault(); 
     
-    const recipientEmail = "your.email@example.com";
+    const recipientEmail = "ronnieevangelistajr@gmail.com";
     
     const clientName = document.getElementById('formName').value;
     const clientEmail = document.getElementById('formEmail').value;
