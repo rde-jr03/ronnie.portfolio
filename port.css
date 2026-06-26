@@ -23,18 +23,19 @@ body {
 .portfolio-page-header {
     width: 100%;
     background-color: #ffffff;
-    padding: 40px 24px 0 24px; /* Slightly tighter padding on edges for mobile space */
+    padding: 40px 40px 0 40px;
     display: flex;
     justify-content: center;
 }
 
-/* .header-container-box {
+.header-container-box {
     max-width: 1200px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-} */
+    position: relative; /* Allows precise layout positioning if needed */
+    align-items: flex-start; /* Forces children to snap to the true left edge */
+}
 
 .back-home-btn {
     text-decoration: none;
@@ -44,6 +45,8 @@ body {
     letter-spacing: 0.05em;
     transition: color 0.2s ease, transform 0.2s ease;
     margin-bottom: 20px;
+    align-self: flex-start; /* Guarantees it stays locked to the left margin */
+    text-align: left;
 }
 
 .back-home-btn:hover {
@@ -53,19 +56,20 @@ body {
 
 .portfolio-header-wrapper {
     width: 100%;
-    text-align: center;
+    text-align: center; /* Keeps the portfolio text perfectly dead-center */
     margin-bottom: 20px;
-    overflow: hidden; /* Restricts any runaway horizontal letter scaling */
+    overflow: hidden;
 }
 
 .portfolio-title-text {
-    font-size: clamp(2.8rem, 11vw, 11rem); /* Scaled down base minimum size for small viewports */
+    font-size: clamp(2.8rem, 11vw, 11rem);
     font-weight: 900;
     color: #0000bc;
-    line-height: 1.1; /* Generous breathing room prevents letter clipping on wrap */
-    letter-spacing: -0.02em; /* Tightens the tracking slightly for premium aesthetic */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     word-wrap: break-word;
-    word-break: break-all; /* Fallback barrier for ultra-narrow screens (e.g., Fold phones) */
+    word-break: break-all;
+    display: inline-block;
 }
 
 /* --- GENERAL SECTION STRUCTURING --- */
@@ -389,13 +393,16 @@ body {
 
 @media (max-width: 480px) {
     .portfolio-page-header {
-        padding: 24px 16px 0 16px; /* Optimized structure tracking */
+        padding: 24px 16px 0 16px;
     }
     
     .portfolio-title-text {
-        font-size: 2.8rem; /* Absolute rigid boundary constraint below 480px width */
+        font-size: 2.8rem;
         line-height: 1.1;
     }
     
     .back-home-btn {
         margin-bottom: 12px;
+        font-size: 0.85rem; /* Slightly smaller text for cramped mobile screens */
+    }
+}
