@@ -1,0 +1,401 @@
+/* --- GLOBAL RESETS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #102a43;
+    overflow-x: hidden;
+}
+
+/* --- PORTFOLIO HEADER NAVIGATION --- */
+.portfolio-page-header {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px 24px 0 24px; /* Slightly tighter padding on edges for mobile space */
+    display: flex;
+    justify-content: center;
+}
+
+/* .header-container-box {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+} */
+
+.back-home-btn {
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+}
+
+.back-home-btn:hover {
+    color: #0000bc;
+    transform: translateX(-4px);
+}
+
+.portfolio-header-wrapper {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    overflow: hidden; /* Restricts any runaway horizontal letter scaling */
+}
+
+.portfolio-title-text {
+    font-size: clamp(2.8rem, 11vw, 11rem); /* Scaled down base minimum size for small viewports */
+    font-weight: 900;
+    color: #0000bc;
+    line-height: 1.1; /* Generous breathing room prevents letter clipping on wrap */
+    letter-spacing: -0.02em; /* Tightens the tracking slightly for premium aesthetic */
+    word-wrap: break-word;
+    word-break: break-all; /* Fallback barrier for ultra-narrow screens (e.g., Fold phones) */
+}
+
+/* --- GENERAL SECTION STRUCTURING --- */
+.portfolio-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px 40px 80px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.portfolio-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-subtitle-text {
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    font-weight: 800;
+    color: #102a43;
+    margin-bottom: 35px;
+    letter-spacing: 0.03em;
+}
+
+.heading-left-align {
+    text-align: left;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    margin-bottom: 25px;
+}
+
+.portfolio-category-block {
+    width: 100%;
+}
+
+.block-spacing {
+    margin-top: 80px;
+}
+
+.portfolio-grid-layout {
+    display: grid;
+    gap: 40px;
+    width: 100%;
+}
+
+/* --- SLIDESHOW CARD STRUCTURING --- */
+.portfolio-item-card {
+    background: #ffffff;
+    border: 2.5px solid #0000bc;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 188, 0.04);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: #f0f4f8;
+    border-bottom: 2.5px solid #0000bc;
+}
+
+.carousel-slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 1;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* CAROUSEL CONTROLS */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 188, 0.85);
+    color: #ffffff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.carousel-arrow:hover { background-color: #0000bc; }
+.carousel-arrow.prev { left: 15px; }
+.carousel-arrow.next { right: 15px; }
+.carousel-arrow:active { transform: translateY(-50%) scale(0.9); }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 0, 188, 0.3);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.dot.active {
+    background: #0000bc;
+    transform: scale(1.2);
+}
+
+/* PROJECT DETAILS TYPOGRAPHY */
+.project-details {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-details h4, .split-project-description h4, .website-project-details h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0000bc;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.project-bullets-list {
+    list-style: none;
+}
+
+.project-bullets-list li {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #334e68;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.project-bullets-list li::before {
+    content: "•";
+    color: #0000bc;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* --- CATEGORY GRIDS --- */
+/* 1. Productivity Workspace Grid (2 Columns) */
+.productivity-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* 2. Creative Skills Grid (3 Columns) */
+.creative-skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.creative-card-label {
+    padding: 20px 15px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #0000bc;
+    text-align: center;
+    background-color: #ffffff;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-top: auto;
+}
+
+/* 3. Websites Complex Grid Layouts */
+.websites-grid-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+}
+
+.website-row-item {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.website-bottom-split-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.website-split-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-carousel-box .carousel-container {
+    border-bottom: none; 
+}
+
+.split-project-description {
+    padding: 25px 0 0 0;
+}
+
+.website-project-details h4 {
+    margin-bottom: 25px;
+}
+
+.tech-stack-row {
+    margin-top: auto;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #0000bc;
+    letter-spacing: 0.02em;
+}
+
+/* BLUE LINK BADGES */
+.view-project-overlay-badge {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0000bc;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 800;
+    padding: 10px 45px;
+    border-radius: 40px;
+    z-index: 20;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(0, 0, 188, 0.2);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.view-project-overlay-badge:hover {
+    background-color: #00008b;
+    transform: translateX(-50%) scale(1.04);
+}
+
+/* --- SCROLL TO TOP BUTTON --- */
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #0000bc;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.scroll-to-top-btn.visible { opacity: 1; visibility: visible; }
+.scroll-to-top-btn svg { width: 28px; height: 28px; fill: #ffffff; }
+
+/* --- RESPONSIVE MEDIA BREAKPOINTS --- */
+@media (max-width: 1024px) {
+    .creative-skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .website-row-item {
+        grid-template-columns: 1fr;
+    }
+    .website-project-details {
+        text-align: center;
+    }
+}
+
+@media (max-width: 992px) {
+    .productivity-grid, .website-bottom-split-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .creative-skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-page-header {
+        padding: 24px 16px 0 16px; /* Optimized structure tracking */
+    }
+    
+    .portfolio-title-text {
+        font-size: 2.8rem; /* Absolute rigid boundary constraint below 480px width */
+        line-height: 1.1;
+    }
+    
+    .back-home-btn {
+        margin-bottom: 12px;
